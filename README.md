@@ -1,2 +1,2 @@
 # depois-de-instalar
-Script de pós instalação do Ubuntu
+Script para facilitar o processo de pós-instalação das distribuições Ubuntu.
