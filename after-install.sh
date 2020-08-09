@@ -1,17 +1,15 @@
 #!/bin/bash
-# Escrito por Víctor Donola Ferreira (vdonoladev)
 
-
-#---VARIÁVEIS---#
+# --- VARIABLES --- #
 CHOICE=Softwares
 
-# verifique se isso está sendo executado como root
+# make sure this is running as root
 declare -f VERIFY_ROOT
 function VERIFY_ROOT()
 {
 	uid=$(id -ur)
 	if [ "$uid" != "0" ]; then
-	        echo "ERROR: Este script deve ser executado como root"
+	        echo "ERROR: This script must be run as root"
 		if [ -x /usr/bin/sudo ]; then
 			echo "try: sudo $0"
 		fi
@@ -19,7 +17,7 @@ function VERIFY_ROOT()
 	fi
 }
 
-#---IDENTIFICAR DISTRIBUIÇÃO---#
+# --- IDENTIFY DISTRIBUTION --- #
 declare -f VERIFY_DISTRIB
 function VERIFY_DISTRIB()
 {
@@ -34,28 +32,28 @@ function VERIFY_DISTRIB()
 		lsb_release -a
 		MENU_MINT
 	else	
-		echo "#========== Distribuição não suportada ==========#"
+		echo "# ========== Unsupported distribution ========== #"
 		sleep 3
 
 	fi
 }
 
-#--- Função de atualização do sistema ---#
+#--- System update function ---#
 declare -f UPDATE
 function UPDATE()
 {
 	clear
-	echo "=== Atualizando Repositórios ==="
+	echo "=== Updating Repositories ==="
 	sleep 2
 	sudo rm /var/lib/dpkg/lock-frontend
 	sudo rm /var/cache/apt/archives/lock
 	sudo apt update -y
 	clear
-	echo "=== Aplicando Atualizações ==="
+	echo "=== Applying Updates ==="
 	sleep 2
 	sudo apt dist-upgrade -y
 	clear
-	echo "=== Finalizado ==="
+	echo "=== Finished ==="
 	sleep 3
 	VERIFY_DISTRIB
 }
@@ -65,11 +63,11 @@ declare -f INSTSOFTWARE
 function INSTSOFTWARE()
 {
 	clear
-	echo "#========== Instalando $CHOICE ==========#"
+	echo "#========== Installing $CHOICE ==========#"
 	sleep 2
 	clear
 	for CHOICE in $selection; do
-		echo "#========== Instalando $CHOICE ==========#"
+		echo "#========== Installing $CHOICE ==========#"
 		sleep 2
 		case $CHOICE in
 			Google-Chrome-Stable )
@@ -122,7 +120,7 @@ function INSTSOFTWARE()
 				;;	
 		esac		
 	done 
-	echo "#========== Concluído com sucesso! ==========#"
+	echo "#========== Successfully concluded! ==========#"
 	sleep 3
     clear
     VERIFY_DISTRIB			
@@ -156,12 +154,12 @@ function INSTLIBREOFFICE()
 	which libreoffice || sudo apt install libreoffice libreoffice-l10n-br -y
 }
 
-#--- Desinstalar Programas ---#
+#--- Uninstall Programs ---#
 declare -f RMSOFTWARES
 function RMSOFTWARES()
 {
  	for CHOICE in $selection; do
- 		echo "#========== Removendo $CHOICE ==========#"
+ 		echo "#========== Removing $CHOICE ==========#"
 		sleep 2
  		sudo apt remove $CHOICE -y
  	done
@@ -170,31 +168,31 @@ function RMSOFTWARES()
 
 ######========== LinuxMint ==========######
 
-###### Função Menu Principal ######
+###### Main Menu Function ######
 declare -f MENU_MINT
 function MENU_MINT()
 {
 	selection=$(zenity --list --title='Selection' --column="#" --column="Softwares" \
-	FALSE "Atualizar Repositórios e Sistema" \
-	FALSE "Instalar Programas" \
-	FALSE "Desinstalar Programas Embutidos" \
+	FALSE "Update Repositories and System" \
+	FALSE "Install Programs" \
+	FALSE "Uninstall Embedded Programs" \
 	--radiolist  --height=200 --width=300 )
 	
 	if [[ -z $selection  ]]; then
 		exit 0
 	fi
 	case "$selection" in
-	    "Atualizar Repositórios e Sistema" )
+	    "Update Repositories and System" )
 	    	UPDATE
 	    	;;  	
-	    "Instalar Programas" )
+	    "Install Programs" )
 	    	INSTMENU_MINT
 	    	;;
-	   	"Desinstalar Programas Embutidos" )
+	   	"Uninstall Embedded Programs" )
 			RMMENU_MINT
 			;;
 	    * )
-	        echo "Opção inválida, tente novamente!"
+	        echo "Invalid option, try again!"
 	        ;;
 	esac
 	exit 0
@@ -274,26 +272,26 @@ declare -f MENU_UBUNTU
 function MENU_UBUNTU()
 {
 	selection=$(zenity --list --title='Selection' --column="#" --column="Softwares" \
-	FALSE "Atualizar Repositórios e Sistema" \
-	FALSE "Instalar Programas" \
-	FALSE "Desinstalar Programas Embutidos" \
+	FALSE "Update Repositories and System" \
+	FALSE "Install Programs" \
+	FALSE "Uninstall Embedded Programs" \
 	--radiolist  --height=200 --width=300 )
 	
 	if [[ -z $selection  ]]; then
 		exit 0
 	fi
 	case "$selection" in
-	    "Atualizar Repositórios e Sistema" )
+	    "Update Repositories and System" )
 	    	UPDATE
 	    	;;  	
-	    "Instalar Programas" )
+	    "Install Programs" )
 	    	INSTMENU_UBUNTU
 	    	;;
-	   	"Desinstalar Programas Embutidos" )
+	   	"Uninstall Embedded Programs" )
 			RMMENU_UBUNTU
 			;;
 	    * )
-	        echo "Opção inválida, tente novamente!"
+	        echo "Invalid option, try again!"
 	        ;;
 	esac
 	exit 0
