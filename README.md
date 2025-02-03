@@ -14,7 +14,7 @@
 
 <h2 id="tech">Tecnologias</h2>
 
-- [HTML](https://devdocs.io/bash)
+- [Bash Script](https://devdocs.io/bash)
 
 <h2 id="about">Sobre</h2>
 
@@ -43,7 +43,7 @@ cd FinalTouch
 
 4. **Execute o arquivo:**
 
-- ```sudo bash after-install.sh```
+- `sudo bash after-install.sh`
 
 5. **Selecione uma opção:**
 
@@ -64,47 +64,50 @@ cd FinalTouch
 
 - Certifique-se de ter o seguinte instalado antes de executar o script:
 
-  - ```zenity```
-  - ```lsb-release```
-  - ```flatpak```
-  - ```snapd```
+  - `zenity`
+  - `lsb-release`
+  - `flatpak`
+  - `snapd`
 
 - Para instalar as dependências:
 
   - ```sudo apt update && sudo apt install zenity lsb-release flatpak snapd -y
 
+    ```
+
 <h3>Softwares suportados</h3>
 
 - Pacotes APT
 
-  - ```libreoffice```
-  - ```gparted```
-  - ```wine-stable```
-  - ```audacious```
+  - `libreoffice`
+  - `gparted`
+  - `wine-stable`
+  - `audacious`
 
 - Pacotes Flatpak
 
-  - ```Spotify```
-  - ```Telegram```
-  - ```Discord```
-  - ```Handbrake```
-  - ```OnlyOffice```
+  - `Spotify`
+  - `Telegram`
+  - `Discord`
+  - `Handbrake`
+  - `OnlyOffice`
 
 - Aplicativos Snap
 
-  - ```VLC```
-  - ```WhatsApp Desktop```
+  - `VLC`
+  - `WhatsApp Desktop`
 
 - Pacotes Manuais
 
-  - ```Google Chrome```
-  - ```Insync```
+  - `Google Chrome`
+  - `Insync`
 
 <h3>Solução de Problemas</h3>
 
 Se uma instalação falhar:
+
 - Certifique-se de ter uma conexão ativa com a internet.
-- Execute ```sudo apt update``` manualmente para verificar se há problemas.
+- Execute `sudo apt update` manualmente para verificar se há problemas.
 - Verifique se o nome do pacote está correto e disponível para sua distribuição.
 
 <h2 id="colab">Colaboradores</h2>
@@ -126,7 +129,7 @@ Agradecimento especial a todas as pessoas que contribuíram para este projeto.
 
 <h2 id="contribute">Contribuir</h2>
 
-1. `git clone https://github.com/vdonoladev/TempTrack.git`
+1. `git clone https://github.com/vdonoladev/FinalTouch.git`
 2. `git checkout -b feature/NAME-OF-FEATURE`
 3. Siga os **Commit Patterns**
 4. Abra um **Pull Request** explicando o problema resolvido ou o recurso feito, se houver, anexe a captura de tela das modificações visuais e aguarde a revisão!
